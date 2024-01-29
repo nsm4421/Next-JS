@@ -1,7 +1,6 @@
 /* global kakao */
 
 import { useState } from "react"
-import * as storeData from "@/data/store-location-data.json"
 import Map from "@/components/map/Map"
 import Markers from "@/components/map/Markers"
 import { StoreType } from "@/constant/interface"
@@ -13,10 +12,13 @@ declare global {
     }
 }
 
-// Reference : https://apis.map.kakao.com/web/guide/ß
-export default function StoreMapPage() {
+interface StoreMapProps {
+    stores : StoreType[];
+}
 
-    const stores = storeData?.['DATA']
+// Reference : https://apis.map.kakao.com/web/guide/ß
+export default function StoreMapPage({stores}:StoreMapProps) {
+
     const [map, setMap] = useState(null)
     const [selectedStore, setSeletedStore] = useState<StoreType|null>(null)
 
@@ -25,4 +27,11 @@ export default function StoreMapPage() {
         <Markers map={map} stores={stores} setSelectedStore={setSeletedStore}/>
         <InfoBox selectedStore={selectedStore} setSelectedStore={setSeletedStore}/>
     </div>
+}
+
+export async function getServerSideProps() {
+    const stores = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/store`).then(res => res.json())
+    return {
+        props: { stores }
+    }
 }

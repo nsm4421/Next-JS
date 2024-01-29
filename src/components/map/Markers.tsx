@@ -4,7 +4,7 @@ import { StoreType } from "@/constant/interface";
 
 interface MarkerProps {
     map: any;
-    stores: any[],
+    stores: StoreType[],
     setSelectedStore: Dispatch<SetStateAction<StoreType | null>>
 }
 
@@ -14,9 +14,9 @@ export default function Markers({ map, stores, setSelectedStore }: MarkerProps) 
         if (map) {
             stores?.map((store) => {
                 // marker
-                var position = new window.kakao.maps.LatLng(store?.y_dnts, store?.x_cnts);
+                var position = new window.kakao.maps.LatLng(store?.Y_DNTS, store?.X_CNTS);
                 var image = new window.kakao.maps.MarkerImage(
-                    `/images/marker/${store?.bizcnd_code_nm ?? 'default'}.png`,
+                    `/images/marker/${store?.BIZCND_CODE_NM ?? 'default'}.png`,
                     new window.kakao.maps.Size(40, 40),
                     { offset: new window.kakao.maps.Point(25, 70) }
                 )
@@ -24,7 +24,7 @@ export default function Markers({ map, stores, setSelectedStore }: MarkerProps) 
                 marker.setMap(map)
 
                 // mouse hover event
-                var content = `<div class="infowindow">${store?.upso_nm}</div>`
+                var content = `<div class="infowindow">${store?.UPSO_NM}</div>`
                 var cusotmOverlay = new window.kakao.maps.CustomOverlay({
                     position, content, xAnchor: 0.6, yAnchor: 0.9
                 })
