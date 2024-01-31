@@ -22,11 +22,11 @@ export default function InfoBox({ selectedStore, setSelectedStore }: InfoBoxProp
                 <div className="px-4 py-3">
                     <div className="flex justify-between items-start">
 
-                        <Image src={`/images/marker/${selectedStore?.bizcnd_code_nm ?? 'defalut'}.png`} width={30} height={30} alt="selected-store" />
+                        <Image src={`/images/marker/${selectedStore?.BIZCND_CODE_NM ?? 'defalut'}.png`} width={30} height={30} alt="selected-store" />
 
                         <div className="w-full mx-5">
-                            <p className="font-semibold text-black">{selectedStore.upso_nm}</p>
-                            <p className="text-sm text-black">{selectedStore.cob_code_nm}</p>
+                            <p className="font-semibold text-black">{selectedStore.UPSO_NM}</p>
+                            <p className="text-sm text-black">{selectedStore.COB_CODE_NM}</p>
                         </div>
 
                         <button onClick={clearSelected}><AiOutlineClose className="text-black" /></button>
@@ -35,17 +35,17 @@ export default function InfoBox({ selectedStore, setSelectedStore }: InfoBoxProp
 
                     <div className="mt-2 flex items-center text-black">
                         <button><HiOutlineMapPin className="mr-3" /></button>
-                        <span>{selectedStore?.rdn_code_nm}</span>
+                        <span>{selectedStore?.RDN_CODE_NM}</span>
                     </div>
 
                     <div className="mt-2 flex items-center text-black">
                         <button><AiOutlineInfoCircle className="mr-3" /></button>
-                        <span>{selectedStore?.crtfc_gbn_nm}</span>
+                        <span>{selectedStore?.CRTFC_GBN_NM}</span>
                     </div>
 
                     <div className="mt-2 flex items-center text-black">
                         <button><AiOutlineCheck className="mr-3" /></button>
-                        <span>{selectedStore?.bizcnd_code_nm}</span>
+                        <span>{selectedStore?.BIZCND_CODE_NM}</span>
                     </div>
                 </div>
 
