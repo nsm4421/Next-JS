@@ -1,5 +1,5 @@
 import { mockCoverages } from "@/constant/mock-coverages";
-import { ApiResponseType, genApiResponse } from "@/lib/api-response";
+import { genApiResponse } from "@/lib/api-response";
 import { Coverage } from "@/types/coverage";
 import { NextRequest } from "next/server";
 
@@ -7,9 +7,7 @@ async function callRemoteApi(query: string): Promise<Coverage[]> {
   return mockCoverages.filter((c) => c.name.includes(query));
 }
 
-export async function GET(
-  request: NextRequest
-): Promise<ApiResponseType<Coverage[]>> {
+export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("query");
   if (!query) {

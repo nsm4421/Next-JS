@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useAppendixState } from "@/store/appendix-store";
 import { Coverage } from "@/types/coverage";
-import { CheckCircle, Eraser, EraserIcon } from "lucide-react";
+import { EraserIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -48,15 +48,19 @@ export default function SearchTextField({ label, side }: Props) {
       console.debug(json.data);
     }, debounceDelay);
     return () => clearTimeout(handler);
-  }, [text]);
+  }, [text, coverages.right, coverages.left, side]);
 
   const handleClear = () => setText("");
 
   const handleSelect = (c: Coverage) => () => {
-    if (side === "left") {
-      setCurrentLeft([...new Set([...coverages.left, c])]);
+    const temp = side === "left" ? coverages.left : coverages.right;
+    const idx = temp.findIndex((t) => c.code === t.code);
+    if (idx !== -1) {
+      return;
+    } else if (side === "left") {
+      setCurrentLeft([...temp, c]);
     } else {
-      setCurrentRight([...new Set([...coverages.right, c])]);
+      setCurrentRight([...temp, c]);
     }
     handleClear();
   };

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import SearchTextField from "./search-text-field";
 import { Separator } from "@/components/ui/separator";
-import { PlusCircle } from "lucide-react";
 import { DisplayCoverages } from "./display-coverages";
 import AddCoverageButton from "./add-coverage-button";
 
